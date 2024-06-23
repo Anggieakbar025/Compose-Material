@@ -80,4 +80,6 @@ dependencies {
     implementation(libs.hiltAndroid)
     ksp(libs.hiltCompiler)
 
+    implementation(libs.splashscreen)
+
 }
