@@ -81,5 +81,6 @@ dependencies {
     ksp(libs.hiltCompiler)
 
     implementation(libs.splashscreen)
+    implementation(libs.glide)
 
 }

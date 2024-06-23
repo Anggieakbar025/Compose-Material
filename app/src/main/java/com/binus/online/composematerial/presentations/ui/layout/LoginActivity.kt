@@ -1,7 +1,7 @@
 package com.binus.online.composematerial.presentations.ui.layout
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -20,7 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -44,6 +44,8 @@ class LoginActivity: ComponentActivity() {
 
 @Composable
 fun Login() {
+    val context = LocalContext.current
+
     // State variables to store user input
     val userName = remember {
         mutableStateOf("")
@@ -102,7 +104,7 @@ fun Login() {
         // Login button
         OutlinedButton(onClick = {
             if ("pengguna" == userName.value && "masuk" == userPassword.value) {
-                //
+                context.startActivity(Intent(context, CatalogActivity::class.java))
             } else {
                 openAlertDialog.value = true
             }

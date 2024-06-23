@@ -11,6 +11,7 @@ composeBom = "2024.04.01"
 hilt = "2.48"
 ksp = "2.0.0-1.0.21"
 splashscreen = "1.2.0-alpha01"
+glide = "1.0.0-beta01"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -32,6 +33,9 @@ splashscreen = { group = "androidx.core", name = "core-splashscreen", version.re
 # Hilt
 hiltAndroid = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hiltCompiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+
+# Glide
+glide = { module = "com.github.bumptech.glide:compose", version.ref = "glide" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
