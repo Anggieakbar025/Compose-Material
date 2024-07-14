@@ -1,9 +1,5 @@
-package com.binus.online.composematerial.presentations.ui.layout
+package com.binus.online.composematerial.presentations.ui.screens.login
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,32 +16,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.binus.online.composematerial.R
 import com.binus.online.composematerial.presentations.ui.components.ConfirmationDialog
+import com.binus.online.composematerial.presentations.ui.navigation.NavigationItem
 import com.binus.online.composematerial.ui.theme.ComposeMaterialTheme
 
-class LoginActivity: ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            ComposeMaterialTheme {
-                Login()
-            }
-        }
-    }
-}
-
 @Composable
-fun Login() {
-    val context = LocalContext.current
-
+fun LoginScreen(navController: NavController?) {
     // State variables to store user input
     val userName = remember {
         mutableStateOf("")
@@ -104,7 +88,7 @@ fun Login() {
         // Login button
         OutlinedButton(onClick = {
             if ("pengguna" == userName.value && "masuk" == userPassword.value) {
-                context.startActivity(Intent(context, CatalogActivity::class.java))
+                navController?.navigate(route  = NavigationItem.Catalog.route)
             } else {
                 openAlertDialog.value = true
             }
@@ -144,6 +128,6 @@ fun Login() {
 @Composable
 fun LoginPreview() {
     ComposeMaterialTheme {
-        Login()
+        LoginScreen(null)
     }
 }

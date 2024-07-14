@@ -1,9 +1,6 @@
-package com.binus.online.composematerial.presentations.ui.layout
+package com.binus.online.composematerial.presentations.ui.screens.home
 
-import android.os.Bundle
 import android.util.Log
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,18 +19,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.binus.online.composematerial.ui.theme.ComposeMaterialTheme
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-
-class CatalogActivity: ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            Catalog()
-        }
-    }
-}
 
 private val rangeForRandom = (0..100000)
 private val randomSizedPhotos = listOf(
@@ -75,8 +64,7 @@ fun randomSampleImageUrl(
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun Catalog() {
-
+fun CatalogScreen(navController: NavController?) {
     Column(
         modifier = Modifier
             .padding(20.dp)
@@ -113,6 +101,6 @@ fun Catalog() {
 @Composable
 fun CatalogPreview() {
     ComposeMaterialTheme {
-        Catalog()
+        CatalogScreen(null)
     }
 }
