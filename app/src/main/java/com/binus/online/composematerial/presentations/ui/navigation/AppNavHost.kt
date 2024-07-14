@@ -2,11 +2,13 @@ package com.binus.online.composematerial.presentations.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.binus.online.composematerial.di.AppModule
 import com.binus.online.composematerial.presentations.ui.screens.add.AddScreen
 import com.binus.online.composematerial.presentations.ui.screens.detail.DetailScreen
 import com.binus.online.composematerial.presentations.ui.screens.home.CatalogScreen
@@ -19,13 +21,20 @@ fun AppNavHost(
     navController: NavHostController,
     startDestination: String
 ) {
+    val context = LocalContext.current
+    val pref = AppModule.getAppPref(context)
+
     NavHost(
         modifier = modifier,
         navController = navController,
         startDestination = startDestination
     ) {
         composable(NavigationItem.Login.route) {
-            LoginScreen(navController = navController)
+            if (pref.getLogin()) {
+                navController.navigate(NavigationItem.Catalog.route) {
+                    popUpTo(NavigationItem.Login.route) { inclusive = true }
+                }
+            } else LoginScreen(navController = navController)
         }
         composable(NavigationItem.Catalog.route) {
             CatalogScreen(navController = navController)

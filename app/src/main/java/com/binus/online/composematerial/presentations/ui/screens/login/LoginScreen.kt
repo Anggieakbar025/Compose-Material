@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -24,12 +25,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.binus.online.composematerial.R
+import com.binus.online.composematerial.di.AppModule
 import com.binus.online.composematerial.presentations.ui.components.ConfirmationDialog
 import com.binus.online.composematerial.presentations.ui.navigation.NavigationItem
 import com.binus.online.composematerial.ui.theme.ComposeMaterialTheme
 
 @Composable
 fun LoginScreen(navController: NavController?) {
+    val context = LocalContext.current
+    val pref = AppModule.getAppPref(context)
+
     // State variables to store user input
     val userName = remember {
         mutableStateOf("")
@@ -88,6 +93,7 @@ fun LoginScreen(navController: NavController?) {
         // Login button
         OutlinedButton(onClick = {
             if ("pengguna" == userName.value && "masuk" == userPassword.value) {
+                pref.setLogin(true)
                 navController?.navigate(route  = NavigationItem.Catalog.route)
             } else {
                 openAlertDialog.value = true

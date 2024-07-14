@@ -83,5 +83,7 @@ dependencies {
 
     implementation(libs.splashscreen)
     implementation(libs.glide)
+    implementation(libs.datastore)
+    implementation(libs.livedata)
 
 }
