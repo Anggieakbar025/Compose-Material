@@ -28,7 +28,7 @@ import com.binus.online.composematerial.R
 import com.binus.online.composematerial.di.AppModule
 import com.binus.online.composematerial.presentations.ui.components.ConfirmationDialog
 import com.binus.online.composematerial.presentations.ui.navigation.NavigationItem
-import com.binus.online.composematerial.ui.theme.ComposeMaterialTheme
+import com.binus.online.composematerial.presentations.ui.theme.ComposeMaterialTheme
 
 @Composable
 fun LoginScreen(navController: NavController?) {
