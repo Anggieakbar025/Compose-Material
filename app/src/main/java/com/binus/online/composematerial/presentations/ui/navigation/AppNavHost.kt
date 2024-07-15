@@ -31,7 +31,7 @@ fun AppNavHost(
     ) {
         composable(NavigationItem.Login.route) {
             if (pref.getLogin()) {
-                navController.navigate(NavigationItem.Catalog.route) {
+                navController.navigate(NavigationItem.Home.route) {
                     popUpTo(NavigationItem.Login.route) { inclusive = true }
                 }
             } else LoginScreen(navController = navController)

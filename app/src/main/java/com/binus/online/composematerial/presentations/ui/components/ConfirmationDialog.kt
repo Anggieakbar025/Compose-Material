@@ -19,7 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.binus.online.composematerial.R
-import com.binus.online.composematerial.ui.theme.ComposeMaterialTheme
+import com.binus.online.composematerial.presentations.ui.theme.ComposeMaterialTheme
 
 @Composable
 fun ConfirmationDialog(
