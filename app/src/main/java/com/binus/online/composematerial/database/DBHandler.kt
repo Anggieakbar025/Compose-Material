@@ -46,13 +46,13 @@ class DBHandler(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
         onCreate(db)
     }
 
-    fun getDataVictim(): List<VictimModel> {
+    fun getDataVictim(name: String? = null, status: String? = null): List<VictimModel> {
         val db = this.readableDatabase
         val cursor: Cursor = db.query(
             Victim.TABLE_NAME,
             null,
-            null,
-            null,
+            "${Victim.COLUMN_NAME} = ? OR ${Victim.COLUMN_STATUS} = ?",
+            arrayOf(name, status),
             null,
             null,
             null

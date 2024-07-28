@@ -42,7 +42,9 @@ hiltAndroid = { module = "com.google.dagger:hilt-android", version.ref = "hilt" 
 hiltCompiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 
 # Glide
-glide = { module = "com.github.bumptech.glide:compose", version.ref = "glide" }
+glide = { module = "com.github.bumptech.glide:glide", version = "4.12.0" }
+glideCompose = { module = "com.github.bumptech.glide:compose", version.ref = "glide" }
+glideCompiler = { module = "com.github.bumptech.glide:compiler", version = "4.12.0" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
