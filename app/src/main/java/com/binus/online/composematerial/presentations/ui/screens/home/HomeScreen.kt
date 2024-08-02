@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Card
 import androidx.compose.material3.DropdownMenuItem
@@ -53,7 +54,6 @@ import com.binus.online.composematerial.presentations.ui.theme.LightBlue
 import com.binus.online.composematerial.presentations.ui.theme.Red
 import com.binus.online.composematerial.presentations.ui.theme.Yellow
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavController?) {
     val context = LocalContext.current
@@ -65,13 +65,25 @@ fun HomeScreen(navController: NavController?) {
 
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = { navController?.navigate(NavigationItem.AddData.route) },
-                contentColor = Color.White,
-                containerColor = MaterialTheme.colorScheme.secondary,
-                shape = MaterialTheme.shapes.small,
-            ) {
-                Icon(Icons.Default.Add, contentDescription = "Tambah Korban")
+            Column {
+                FloatingActionButton(
+                    onClick = { navController?.navigate(NavigationItem.CheckLocation.route) },
+                    contentColor = Color.White,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    shape = MaterialTheme.shapes.small,
+                    modifier = Modifier.padding(vertical = 8.dp)
+                ) {
+                    Icon(Icons.Default.Place, contentDescription = "Lihat Pemetan")
+                }
+
+                FloatingActionButton(
+                    onClick = { navController?.navigate(NavigationItem.AddData.route) },
+                    contentColor = Color.White,
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    shape = MaterialTheme.shapes.small,
+                ) {
+                    Icon(Icons.Default.Add, contentDescription = "Tambah Korban")
+                }
             }
         },
         content = { paddingValues ->
@@ -93,11 +105,15 @@ fun HomeScreen(navController: NavController?) {
                             .fillMaxWidth()
                     )
 
-                    Column {
+                    Column (
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp, vertical = 8.dp)
+                            .fillMaxWidth()
+                    ) {
                         Row {
                             FilterStatus()
                         }
-                        Row {
+                        /*Row {
                             SearchBar(
                                 query = name,
                                 onQueryChange = { name = it },
@@ -109,9 +125,9 @@ fun HomeScreen(navController: NavController?) {
                                 onActiveChange = {isSearchActive = it },
                                 placeholder = { Text("Cari Nama") }
                             ) {
-                                Text("Nama")
+
                             }
-                        }
+                        }*/
                     }
                     if (victims.isNotEmpty()) {
                         LazyColumn {
@@ -191,8 +207,10 @@ fun FilterStatus() {
     ) {
         OutlinedTextField(
             value = status.value,
-            onValueChange = {},
-            label = { Text("Status") },
+            onValueChange = {
+
+            },
+            label = { Text("Pilih Status") },
             readOnly = true,
             trailingIcon = {
                 ExposedDropdownMenuDefaults.TrailingIcon(expanded = statusExpanded)

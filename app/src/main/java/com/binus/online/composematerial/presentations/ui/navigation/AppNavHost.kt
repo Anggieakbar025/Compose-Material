@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.binus.online.composematerial.di.AppModule
 import com.binus.online.composematerial.presentations.ui.screens.add.AddScreen
+import com.binus.online.composematerial.presentations.ui.screens.checklocation.CheckLocationScreen
 import com.binus.online.composematerial.presentations.ui.screens.detail.DetailScreen
 import com.binus.online.composematerial.presentations.ui.screens.home.CatalogScreen
 import com.binus.online.composematerial.presentations.ui.screens.home.HomeScreen
@@ -34,7 +35,9 @@ fun AppNavHost(
                 navController.navigate(NavigationItem.Home.route) {
                     popUpTo(NavigationItem.Login.route) { inclusive = true }
                 }
-            } else LoginScreen(navController = navController)
+            } else {
+                LoginScreen(navController = navController)
+            }
         }
         composable(NavigationItem.Catalog.route) {
             CatalogScreen(navController = navController)
@@ -44,6 +47,9 @@ fun AppNavHost(
         }
         composable(NavigationItem.AddData.route) {
             AddScreen(navController = navController)
+        }
+        composable(NavigationItem.CheckLocation.route) {
+            CheckLocationScreen(navController = navController)
         }
         composable(
             NavigationItem.Detail.route,

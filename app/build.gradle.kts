@@ -25,6 +25,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        buildConfigField("String", "CLIENT_ID", "\"849331623913-9i6uku90ol7moror9oclqg3cqcegnva5.apps.googleusercontent.com\"")
     }
 
     buildTypes {
@@ -45,6 +47,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -80,6 +83,7 @@ dependencies {
 
     implementation(libs.hiltAndroid)
     ksp(libs.hiltCompiler)
+    implementation(libs.hiltNavCompose)
 
     implementation(libs.splashscreen)
     implementation(libs.glide)
@@ -87,5 +91,12 @@ dependencies {
     annotationProcessor(libs.glideCompiler)
     implementation(libs.datastore)
     implementation(libs.livedata)
+
+    //Google Services
+    implementation(libs.androidx.credentials)
+    implementation(libs.credentials.play.services)
+    implementation(libs.googleId)
+    implementation(libs.google.services)
+    implementation(libs.maps.compose)
 
 }
