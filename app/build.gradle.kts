@@ -1,9 +1,16 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
+}
+
+val localProperties = Properties().apply {
+    load(FileInputStream(File(rootProject.rootDir, "local.properties")))
 }
 
 composeCompiler {
@@ -27,6 +34,7 @@ android {
         }
 
         buildConfigField("String", "CLIENT_ID", "\"849331623913-9i6uku90ol7moror9oclqg3cqcegnva5.apps.googleusercontent.com\"")
+        resValue("string", "google_api_key", localProperties["GOOGLE_API_KEY"].toString())
     }
 
     buildTypes {
